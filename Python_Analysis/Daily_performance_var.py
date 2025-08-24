@@ -1,6 +1,6 @@
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
-import os
 
 # Paths
 Base_dir = os.path.dirname(os.path.dirname(__file__))
