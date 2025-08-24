@@ -54,8 +54,8 @@ for i, associate in enumerate(associates):
 #Shared x-axis
 plt.xlabel("Date")
 plt.tight_layout()
-plt.show()
 plt.savefig(Plot_path)
+plt.show()
 plt.close()
 
 results_df = pd.DataFrame(results)

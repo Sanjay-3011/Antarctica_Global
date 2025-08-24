@@ -18,8 +18,8 @@ dim_df = pd.read_csv(Dim_path)
 #Merging two tables
 df = fact_df.merge(dim_df, left_on="Employee ID", right_on="Employee ID")
 
-#Droping missing values to avoid invalid correlations
-time_efficiency = df.dropna(subset=["AvgMinsPerLead", "Leads"])
+# #Droping missing values to avoid invalid correlations
+# time_efficiency = df.dropna(subset=["AvgMinsPerLead", "Leads"])
 
 def corr_measure(corr):
     if corr > 0:
@@ -30,12 +30,12 @@ def corr_measure(corr):
         return "Neutral"
 
 #Overall correlation
-corr, pval = pearsonr(time_efficiency["AvgMinsPerLead"], time_efficiency["Leads"])
+corr, pval = pearsonr(df["AvgMinsPerLead"], df["Leads"])
 corr, pval = corr.round(2), pval.round(3)
 print(f"Overall correlation: {corr} ({corr_measure(corr)}) | p-value={pval}")
 
 #Correlation per associate
-for name, group in time_efficiency.groupby("Employee Name"):
+for name, group in df.groupby("Employee Name"):
     if len(group) > 1:  # Pearson needs at least 2 points
         corr, pval = pearsonr(group["AvgMinsPerLead"], group["Leads"])
         corr, pval = corr.round(2), pval.round(3)
@@ -43,13 +43,13 @@ for name, group in time_efficiency.groupby("Employee Name"):
 
 #Scatter plot with trendline
 plt.figure(figsize=(8,6))
-plt.scatter(time_efficiency["AvgMinsPerLead"], time_efficiency["Leads"], alpha=0.6)
-m, b = np.polyfit(time_efficiency["AvgMinsPerLead"], time_efficiency["Leads"], 1)
-plt.plot(time_efficiency["AvgMinsPerLead"], m*time_efficiency["AvgMinsPerLead"]+b, color="red", linewidth=2)
+plt.scatter(df["AvgMinsPerLead"], df["Leads"], alpha=0.6)
+m, b = np.polyfit(df["AvgMinsPerLead"], df["Leads"], 1)
+plt.plot(df["AvgMinsPerLead"], m*df["AvgMinsPerLead"]+b, color="red", linewidth=2)
 plt.title("Avg Time per Lead vs Total Leads")
 plt.xlabel("Average Time per Lead (mins)")
 plt.ylabel("Total Leads per Day")
 plt.grid(True, linestyle="--", alpha=0.5)
-plt.show()
 plt.savefig(Plot_path)
+plt.show()
 plt.close()

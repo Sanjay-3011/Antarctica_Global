@@ -26,12 +26,7 @@ for associate, group in df.groupby("Employee Name"):
     #Calculating Avgtime spent on those days
     avg_time = high_perf_days["TimeMins"].mean()
     
-    high_perf_results.append({
-        "Employee Name": associate,
-        "Cutoff_Leads": cutoff,
-        "AvgTime_HighPerfDays": avg_time,
-        "HighPerf_DaysCount": len(high_perf_days)
-    })
+    high_perf_results.append({"Employee Name": associate, "Cutoff_Leads": cutoff, "AvgTime_HighPerfDays": avg_time,"HighPerf_DaysCount": len(high_perf_days)})
 
 #Converting results into DataFrame
 high_perf_df = pd.DataFrame(high_perf_results)
@@ -47,6 +42,6 @@ plt.xlabel("Average Time Spent(mins)")
 plt.ylabel("Associate")
 plt.title("High-Performance Days")
 plt.gca().invert_yaxis()  #Keeping the highes performance in the top
-plt.show()
 plt.savefig(Plot_path)
+plt.show()
 plt.close()
