@@ -46,6 +46,7 @@ plt.barh(high_perf_df["Employee Name"], high_perf_df["AvgTime_HighPerfDays"], co
 plt.xlabel("Average Time Spent(mins)")
 plt.ylabel("Associate")
 plt.title("High-Performance Days")
-plt.gca().invert_yaxis()  # highest bar at top
+plt.gca().invert_yaxis()  #Keeping the highes performance in the top
+plt.show()
 plt.savefig(Plot_path)
 plt.close()
