@@ -2,34 +2,32 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Paths
+#Paths
 Base_dir = os.path.dirname(os.path.dirname(__file__))
 Fact_path = os.path.join(Base_dir, "data", "Fact_LeadGeneration.csv")
 Dim_path = os.path.join(Base_dir, "data", "Dim_Associate.csv")
 Plot_path = os.path.join(Base_dir, "plots", "Lead_generation_eff.png")
 
-# Loading the datasets
+#Loading the datasets
 fact_df = pd.read_csv(Fact_path)
 dim_df = pd.read_csv(Dim_path)
 
-# Merging two tables
+#Merging two tables
 df = fact_df.merge(dim_df, left_on="Employee ID", right_on="Employee ID")
 
-# Aggregate
+#Grouping by employee and Aggregating
 efficiency = df.groupby(["Employee ID", "Employee Name"]).agg(TotalLeads=("Leads", "sum"), TotalTimeSpent=("TimeMins", "sum")).reset_index()
 
-# Efficiency calculation
+#Efficiency calculation
 efficiency["Efficiency"] = (efficiency["TotalLeads"] / efficiency["TotalTimeSpent"]).round(2)
 
-# Sorting to find the top performer
+#Sorting to find the top performer
 efficiency = efficiency.sort_values(by="Efficiency", ascending=False)
-top_employee = efficiency.iloc[0]
 
 print("Lead Generation Efficiency")
 print(efficiency)
-print(f"\n Highest efficiency: {top_employee['Employee Name']} ({top_employee['Efficiency']} leads per unit time)")
 
-# Plot
+#Bar Plot
 plt.figure(figsize=(8, 5))
 plt.bar(efficiency["Employee Name"], efficiency["Efficiency"], color="#4CAF50")
 plt.xticks(rotation=45, ha="right")
