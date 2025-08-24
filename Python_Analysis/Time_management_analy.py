@@ -18,11 +18,10 @@ dim_df = pd.read_csv(Dim_path)
 # Merging two tables
 df = fact_df.merge(dim_df, left_on="Employee ID", right_on="Employee ID")
 
-# Drop missing values for relevant columns
+# Droping missing values to avoid invalid correlations
 time_efficiency = df.dropna(subset=["AvgMinsPerLead", "Leads"])
 
-# Simple interpretation function
-def interpret_corr(corr):
+def corr_measure(corr):
     if corr > 0:
         return "Positive"
     elif corr < 0:
@@ -33,14 +32,14 @@ def interpret_corr(corr):
 # Overall correlation
 corr, pval = pearsonr(time_efficiency["AvgMinsPerLead"], time_efficiency["Leads"])
 corr, pval = corr.round(2), pval.round(3)
-print(f"Overall correlation: {corr} ({interpret_corr(corr)}) | p-value={pval}")
+print(f"Overall correlation: {corr} ({corr_measure(corr)}) | p-value={pval}")
 
 # Correlation per associate
 for name, group in time_efficiency.groupby("Employee Name"):
     if len(group) > 1:  # Pearson needs at least 2 points
         corr, pval = pearsonr(group["AvgMinsPerLead"], group["Leads"])
         corr, pval = corr.round(2), pval.round(3)
-        print(f"{name}: {corr} ({interpret_corr(corr)}) | p-value={pval}")
+        print(f"{name}: {corr} ({corr_measure(corr)}) | p-value={pval}")
 
 # Scatter plot with trendline
 plt.figure(figsize=(8,6))
