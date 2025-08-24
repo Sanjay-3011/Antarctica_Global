@@ -3,14 +3,14 @@ import matplotlib.pyplot as plt
 import os
 
 # Paths
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-FACT_PATH = os.path.join(BASE_DIR, "data", "Fact_LeadGeneration.csv")
-DIM_PATH = os.path.join(BASE_DIR, "data", "Dim_Associate.csv")
-PLOT_PATH = os.path.join(BASE_DIR, "plots", "Lead_generation_eff.png")
+Base_dir = os.path.dirname(os.path.dirname(__file__))
+Fact_path = os.path.join(Base_dir, "data", "Fact_LeadGeneration.csv")
+Dim_path = os.path.join(Base_dir, "data", "Dim_Associate.csv")
+Plot_path = os.path.join(Base_dir, "plots", "Lead_generation_eff.png")
 
 # Loading the datasets
-fact_df = pd.read_csv(FACT_PATH)
-dim_df = pd.read_csv(DIM_PATH)
+fact_df = pd.read_csv(Fact_path)
+dim_df = pd.read_csv(Dim_path)
 
 # Merging two tables
 df = fact_df.merge(dim_df, left_on="Employee ID", right_on="Employee ID")
@@ -33,8 +33,8 @@ print(f"\n Highest efficiency: {top_employee['Employee Name']} ({top_employee['E
 plt.figure(figsize=(8, 5))
 plt.bar(efficiency["Employee Name"], efficiency["Efficiency"], color="#4CAF50")
 plt.xticks(rotation=45, ha="right")
-plt.title("Lead Generation Efficiency per Associate")
+plt.title("Lead Generation Efficiency")
 plt.ylabel("Efficiency (Leads per Time Unit)")
 plt.tight_layout()
-plt.savefig(PLOT_PATH)
+plt.savefig(Plot_path)
 plt.close()
