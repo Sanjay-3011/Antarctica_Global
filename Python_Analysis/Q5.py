@@ -38,7 +38,7 @@ for i, associate in enumerate(associates):
     #Fitting linear regression
     model = LinearRegression()
     model.fit(X, y)
-    slope = model.coef_[0]
+    slope = model.coef_[0].round(4)
 
     #Storing the result
     status = "Improvement" if slope < 0 else "Deterioration" if slope > 0 else "No Change"
