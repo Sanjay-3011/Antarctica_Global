@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 Base_dir = os.path.dirname(os.path.dirname(__file__))
 Fact_path = os.path.join(Base_dir, "data", "Fact_LeadGeneration.csv")
 Dim_path = os.path.join(Base_dir, "data", "Dim_Associate.csv")
-Plot_path = os.path.join(Base_dir, "plots", "Leads_Performance_Comparison.png")
+Plot_path = os.path.join(Base_dir, "plots", "P4.png")
 
 #Loading the datasets
 fact_df = pd.read_csv(Fact_path)
