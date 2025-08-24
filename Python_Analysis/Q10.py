@@ -44,7 +44,7 @@ fig, axes = plt.subplots(2, 1, figsize=(8, 12))
 
 sns.scatterplot(x=X_test.flatten(), y=y_test, label="Actual", ax=axes[0])
 sns.lineplot(x=X_test.flatten(), y=y_pred, color="red", label="Predicted", ax=axes[0])
-axes[0].set_title("Time Spent vs Leads (Regression Line)")
+axes[0].set_title("Predicitve Analysis")
 axes[0].set_xlabel("Time Spent (minutes)")
 axes[0].set_ylabel("Leads")
 

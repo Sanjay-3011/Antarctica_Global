@@ -44,7 +44,7 @@ pivot_df = review_perf.pivot(index="Employee Name", columns="Review", values="Av
 pivot_df.plot(kind="bar", figsize=(8,6))
 plt.title("Average Leads: Attended vs Missed Daily Team Reviews")
 plt.ylabel("Average Leads")
-plt.xlabel("Associates")
+plt.xlabel("Associate")
 plt.xticks(rotation=0)
 plt.legend(title="Review Status")
 plt.tight_layout()

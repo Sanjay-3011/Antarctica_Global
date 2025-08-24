@@ -31,7 +31,7 @@ print(variability)
 #Bar Plot
 plt.figure(figsize=(8,5))
 plt.bar(variability["Employee Name"], variability["StdDevLeads"], color="coral")
-plt.xlabel("Employee")
+plt.xlabel("Associate")
 plt.ylabel("Std Dev of Daily Leads")
 plt.title("Daily Performance Variability")
 plt.xticks(rotation=45, ha="right")
