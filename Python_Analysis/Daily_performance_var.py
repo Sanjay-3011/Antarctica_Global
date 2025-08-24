@@ -17,7 +17,6 @@ df = fact_df.merge(dim_df, left_on="Employee ID", right_on="Employee ID")
 
 # Grouping by employee and date
 daily_leads = df.groupby(["Employee ID", "Employee Name", "Date"])["Leads"].sum().reset_index()
-print(daily_leads)
 
 # Calculating std dev of daily leads per associate
 variability = daily_leads.groupby(["Employee ID", "Employee Name"])["Leads"].std().reset_index().round(2)
@@ -27,7 +26,7 @@ variability = variability.rename(columns={"Leads": "StdDevLeads"})
 variability = variability.sort_values(by="StdDevLeads", ascending=False)
 top_var = variability.iloc[0]
 
-print("\nDaily Performance Variability")
+print("Daily Performance Variability")
 print(variability)
 print(f"\n Highest variability: {top_var['Employee Name']} ({top_var['StdDevLeads']} std dev)")
 
