@@ -22,9 +22,10 @@ df = fact_df.merge(dim_df, left_on = "Employee ID", right_on = "Employee ID")
 
 X = df[["TimeMins"]].values
 y = df["Leads"].values
+employee_ids = df["Employee ID"].values
 
 #Train-test split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test, id_train, id_test = train_test_split(X, y, employee_ids, test_size=0.2, random_state=42)
 
 #Linear Regression Model
 model = LinearRegression()
@@ -39,9 +40,15 @@ print("Model Performance:")
 print(f"Mean Squared Error: {mse}")
 print(f"R² Score: {r2}")
 
+#Results Table
+results_df = pd.DataFrame({"Employee ID": id_test, "Time Spent (mins)": X_test.flatten(), "Actual Leads": y_test, 
+                           "Predicted Leads": y_pred.round(2), "Error": (y_pred - y_test).round(2)})
+
+print("Predicted vs Actual Leads per Associate:")
+print(results_df.sort_values("Employee ID").reset_index(drop=True))
+
 #Sctter Plots
 fig, axes = plt.subplots(2, 1, figsize=(8, 12))
-
 sns.scatterplot(x=X_test.flatten(), y=y_test, label="Actual", ax=axes[0])
 sns.lineplot(x=X_test.flatten(), y=y_pred, color="red", label="Predicted", ax=axes[0])
 axes[0].set_title("Predicitve Analysis")
