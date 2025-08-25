@@ -44,27 +44,6 @@ The analysis combines **Power BI (Power Query)** for data preprocessing, cleanin
 
 ---
 
-## 📑 Report Contents  
-1. Introduction  
-2. Data Preprocessing & Cleaning  
-3. Data Modeling  
-4. Key Findings & Analysis (Q1–Q10)  
-5. Dashboard Development  
-6. Recommendations  
-7. Conclusion  
-8. Appendix – Power BI & Python methodology  
-
-📄 Full Report: [Associate Performance Report (PDF)](./report/Associate_Performance_Report.pdf)  
-
----
-
-## 🔗 Access  
-- **Power BI Dashboard** – [PBIX File](./dashboard/Associate_Performance.pbix)  
-- **Python Code & Plots** – Available in `notebooks/`  
-- **Full Report** – [PDF Report](./report/Associate_Performance_Report.pdf)  
-
----
-
 ## ✅ Recommendations  
 ### Actionable Steps  
 - ⏱ **Time Allocation Guidelines** – Set optimal time benchmarks to balance speed & quality  
