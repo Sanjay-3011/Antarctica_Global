@@ -1,7 +1,6 @@
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
 import numpy as np
 
 #Paths
