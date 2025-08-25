@@ -36,7 +36,7 @@ optimal_bin = bin_summary.loc[bin_summary['Leads'].idxmax(), 'TimeBin']
 
 print("Time Bin Analysis (minutes):")
 print(bin_summary)
-print(f"\n✅ Optimal Time Spent for Max Leads ≈ {optimal_bin}-{optimal_bin+bin_size} minutes")
+print(f"\nOptimal Time Spent for Max Leads ≈ {optimal_bin}-{optimal_bin+bin_size} minutes")
 
 #Plot
 plt.figure(figsize=(8,6))
